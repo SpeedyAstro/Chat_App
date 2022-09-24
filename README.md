@@ -1,5 +1,6 @@
 # **Chat App**        
 > **A Distributed Chatting Application [GUI] with event handling, which allows server to connect with mulitple Clients.**
+> - It is all Possible through <a href="https://docs.oracle.com/javase/tutorial/networking/sockets/index.html" target="_blank">Socket Programming 🍵</a>
 <h1 align="center">
   <br>
   <a href="https://github.com/Mr-Anubhav-pandey/Chat_App/blob/main/Main/src/main/resources/chatApp.png"><img src="https://github.com/Mr-Anubhav-pandey/Chat_App/blob/main/Main/src/main/resources/chatApp.png" alt="Markdownify" width="200"></a>
@@ -32,6 +33,14 @@
   <img src="https://github.com/Mr-Anubhav-pandey/Chat_App/blob/main/Main/src/main/resources/Chatapp1.gif" alt="animated" />
 </p>
 
+## Key Features
+- [x] Sount Alert Everytime new message fire up
+- [x] Can Connect with different Devices
+- [x] Scrollable chat UI
+- [x] Unlimited Chat
+- [x] IP Address generates automatically dependent on System
+- [x] Supports All OS
+
  ## Prerequisite
  [Java (v 8+)](https://www.oracle.com/java/technologies/downloads/)
  
@@ -53,3 +62,4 @@
 - [ ] More UI Optimization
 - [ ] Framework to use Remote Method Invocation 
 - [ ] Create Jar File (bug)
+- [ ] Auth
