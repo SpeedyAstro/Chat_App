@@ -41,7 +41,7 @@ public class Server {
         textArea.setEditable(false);
         Font font = new Font("Arial", Font.BOLD,16);
         textArea.setFont(font);
-        textArea.setForeground(Color.BLACK);
+        textArea.setForeground(Color.YELLOW);
         scrollPane = new JScrollPane(textArea);
         server_frame.add(scrollPane); // Scroll pane added on textarea
         textField = new JTextField();
@@ -51,7 +51,7 @@ public class Server {
             public void actionPerformed(ActionEvent e) {
 //                textArea.append(textField.getText()+"\n"); // working
 //                textField.setText("");
-                textArea.setForeground(Color.BLACK);
+                textArea.setForeground(Color.WHITE);
                 SendMessage(textField.getText());
                 textArea.append("You : "+textField.getText()+"\n");
                 textField.setText("");
@@ -66,7 +66,7 @@ public class Server {
             System.out.println(ip);
             serverSocket = new ServerSocket(1111);
             textArea.setText("Server IP : "+ip+"\n Waiting for Client...");
-
+            textArea.setBackground(Color.BLACK);
             socket = serverSocket.accept();
             textArea.setText("Client Connected!\n");
             textArea.append("---------------------------------------------\n");
