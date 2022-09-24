@@ -1,5 +1,5 @@
 # **Chat App**        
-**A Distributed Chatting Application [GUI] with event handling, which allows server to connect with mulitple Clients.**
+> **A Distributed Chatting Application [GUI] with event handling, which allows server to connect with mulitple Clients.**
 <h1 align="center">
   <br>
   <a href="https://github.com/Mr-Anubhav-pandey/Chat_App/blob/main/Main/src/main/resources/chatApp.png"><img src="https://github.com/Mr-Anubhav-pandey/Chat_App/blob/main/Main/src/main/resources/chatApp.png" alt="Markdownify" width="200"></a>
@@ -18,6 +18,16 @@
   <a href="#Optimization">Optimization </a>
 </p>
 
+# Project Information
+
+<p align="left">  
+<img src="https://img.shields.io/badge/Language-Java-blue">
+<img src="https://img.shields.io/badge/Platform-Windows-brightgreen">
+<img src="https://img.shields.io/badge/GUI-Java Swing-blueviolet">
+<img src="https://img.shields.io/badge/Version-2.1-ff69b4">
+<img src="https://img.shields.io/badge/IDE-Netbeans_11.3-34baeb"
+
+</p>
 <p align="center">
   <img src="https://github.com/Mr-Anubhav-pandey/Chat_App/blob/main/Main/src/main/resources/Chatapp1.gif" alt="animated" />
 </p>
