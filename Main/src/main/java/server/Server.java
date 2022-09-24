@@ -1,13 +1,13 @@
 package server;
 
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
-import java.io.Externalizable;
-import java.io.OutputStream;
+import java.io.*;
 import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -35,8 +35,13 @@ public class Server {
         server_frame = new JFrame("server");
         server_frame.setSize(500,500);
         server_frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        Image icon = Toolkit.getDefaultToolkit().getImage("C:\\Users\\pande\\Documents\\ChattingApp\\Main\\src\\main\\resources\\charApp.png");
+        server_frame.setIconImage(icon);
         textArea = new JTextArea();
         textArea.setEditable(false);
+        Font font = new Font("Arial", Font.BOLD,16);
+        textArea.setFont(font);
+        textArea.setForeground(Color.BLACK);
         scrollPane = new JScrollPane(textArea);
         server_frame.add(scrollPane); // Scroll pane added on textarea
         textField = new JTextField();
@@ -46,6 +51,7 @@ public class Server {
             public void actionPerformed(ActionEvent e) {
 //                textArea.append(textField.getText()+"\n"); // working
 //                textField.setText("");
+                textArea.setForeground(Color.BLACK);
                 SendMessage(textField.getText());
                 textArea.append("You : "+textField.getText()+"\n");
                 textField.setText("");
@@ -63,7 +69,8 @@ public class Server {
 
             socket = serverSocket.accept();
             textArea.setText("Client Connected!\n");
-            textArea.append("\t\t---------------------------------------------\n");
+            textArea.append("---------------------------------------------\n");
+            textArea.setForeground(Color.GREEN);
             textField.setEditable(true);
 
         } catch (Exception e) {System.out.println(e);}
@@ -78,6 +85,7 @@ public class Server {
     }
     public void showMessage(String message){
         textArea.append("Client : "+message+"\n");
+        chatSound();
     }
     public void SendMessage(String message){
         try {
@@ -96,6 +104,7 @@ public class Server {
         }
     }
     void setIoStream(){
+        //textArea.setForeground(Color.BLACK);
         try {
             dis = new DataInputStream(socket.getInputStream());
             dos = new DataOutputStream(socket.getOutputStream());
@@ -105,5 +114,15 @@ public class Server {
         }
         thread.start();
     }
-
+    public void chatSound(){
+        try {
+            String sound = "Main\\src\\main\\java\\server\\alertsound\\pop.wav";
+            AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File(sound).getAbsoluteFile());
+            Clip clip = AudioSystem.getClip();
+            clip.open(audioInputStream);
+            clip.start();
+        }catch (Exception e){
+            System.out.println(e);
+        }
+    }
 }

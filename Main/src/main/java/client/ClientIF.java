@@ -1,13 +1,13 @@
 package client;
 
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
-import java.io.InputStream;
-import java.io.OutputStream;
+import java.io.*;
 import java.net.Socket;
 
 public class ClientIF {
@@ -37,8 +37,12 @@ public class ClientIF {
                 client_frame = new JFrame("Client");
                 client_frame.setSize(500, 500);
                 client_frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                Image icon = Toolkit.getDefaultToolkit().getImage("C:\\Users\\pande\\Documents\\ChattingApp\\Main\\src\\main\\resources\\charApp.png");
+                client_frame.setIconImage(icon);
                 textArea = new JTextArea();
                 textArea.setEditable(false);
+                Font font = new Font("Arial", Font.BOLD,16);
+                textArea.setFont(font);
                 scrollPane = new JScrollPane(textArea);
                 client_frame.add(scrollPane); // Scroll pane added on textarea
                 textField = new JTextField();
@@ -82,12 +86,24 @@ public class ClientIF {
     }
     public void showMessage(String message){
         textArea.append("Server : "+message+"\n");
+        chatSound();
     }
     public void readMessage(){
         try {
             String str = dis.readUTF();
             showMessage(str);
         }catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+    public void chatSound(){
+        try {
+            String sound = "Main\\src\\main\\java\\client\\alertsound\\pop.wav";
+            AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File(sound).getAbsoluteFile());
+            Clip clip = AudioSystem.getClip();
+            clip.open(audioInputStream);
+            clip.start();
+        }catch (Exception e){
             System.out.println(e);
         }
     }
