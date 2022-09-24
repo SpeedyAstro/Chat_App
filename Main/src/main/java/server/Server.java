@@ -4,6 +4,10 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.Externalizable;
+import java.io.OutputStream;
 import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -15,6 +19,18 @@ public class Server {
     private JTextField textField;
     private ServerSocket serverSocket;
     private InetAddress inetAddress;
+    DataInputStream dis;
+    DataOutputStream dos;
+    Socket socket;
+    //---------------------------THREAD CREATED----------------------------
+        Thread thread = new Thread(){
+            public void run(){
+                while (true){
+                    readMessage();
+                }
+            }
+    };
+    //---------------------------------------------------------------------
     Server(){
         server_frame = new JFrame("server");
         server_frame.setSize(500,500);
@@ -24,12 +40,15 @@ public class Server {
         scrollPane = new JScrollPane(textArea);
         server_frame.add(scrollPane); // Scroll pane added on textarea
         textField = new JTextField();
+        textField.setEditable(false);
         textField.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
 //                textArea.append(textField.getText()+"\n"); // working
 //                textField.setText("");
-                showMessage(e.getActionCommand());
+                SendMessage(textField.getText());
+                textArea.append("You : "+textField.getText()+"\n");
+                textField.setText("");
             }
         });
         server_frame.add(textField, BorderLayout.SOUTH);
@@ -42,9 +61,10 @@ public class Server {
             serverSocket = new ServerSocket(1111);
             textArea.setText("Server IP : "+ip+"\n Waiting for Client...");
 
-            Socket socket = serverSocket.accept();
+            socket = serverSocket.accept();
             textArea.setText("Client Connected!\n");
             textArea.append("\t\t---------------------------------------------\n");
+            textField.setEditable(true);
 
         } catch (Exception e) {System.out.println(e);}
     }
@@ -57,8 +77,33 @@ public class Server {
         return inetAddress.getHostAddress();
     }
     public void showMessage(String message){
-        textArea.append(message+"\n");
-        textField.setText("");
+        textArea.append("Client : "+message+"\n");
+    }
+    public void SendMessage(String message){
+        try {
+            dos.writeUTF(message);
+            dos.flush();
+        } catch (Exception e){
+            System.out.println(e);
+        }
+    }
+    public void readMessage(){
+        try {
+            String str = dis.readUTF();
+            showMessage(str);
+        }catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+    void setIoStream(){
+        try {
+            dis = new DataInputStream(socket.getInputStream());
+            dos = new DataOutputStream(socket.getOutputStream());
+
+        }catch (Exception e){
+            System.out.println(e);
+        }
+        thread.start();
     }
 
 }
