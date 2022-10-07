@@ -1,4 +1,4 @@
-# **Chat App**        
+# <h1 align='center'><a href="https://github.com/Mr-Anubhav-pandey/Chat_App"><code> Chat App </code></a></h1><img src="https://media.giphy.com/media/mGcNjsfWAjY5AEZNw6/giphy.gif" width="50"></h2>
 > **A Distributed Chatting Application [GUI] with event handling, which allows server to connect with mulitple Clients.**
 > - It is all Possible through <a href="https://docs.oracle.com/javase/tutorial/networking/sockets/index.html" target="_blank">Socket Programming 🍵</a>
 <h1 align="center">
