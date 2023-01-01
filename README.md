@@ -40,6 +40,7 @@
 - [x] Unlimited Chat
 - [x] IP Address generates automatically dependent on System
 - [x] Supports All OS
+- [x] Network - Intranet
 
  ## Prerequisite
  [Java (v 8+)](https://www.oracle.com/java/technologies/downloads/)
